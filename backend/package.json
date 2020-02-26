@@ -1,0 +1,28 @@
+{
+	"name": "forum-backend",
+	"version": "1.0.0",
+	"description": "Backend for forum management app",
+	"main": "index.js",
+	"dependencies": {
+		"dotenv": "^8.2.0",
+		"natural-orderby": "^2.0.3"
+	},
+	"devDependencies": {
+		"aws-sdk": "^2.626.0",
+		"chai": "^4.2.0",
+		"eslint": "^6.8.0",
+		"eslint-config-airbnb-base": "^14.0.0",
+		"eslint-plugin-import": "^2.20.1",
+		"mocha": "^6.2.2",
+		"nyc": "^14.1.1"
+	},
+	"scripts": {
+		"lint": "eslint --fix src/**/*.js src/*.js",
+		"test": "nyc mocha --timeout 60000",
+		"start": "node index.js",
+		"local": "npm install && npm run rebuild",
+		"rebuild": "npm rebuild --target=8.10.0 --target_platform=linux --target_arch=x64 --target_libc=glibc --update-binary"
+	},
+	"author": "mervyn",
+	"license": "ISC"
+}
