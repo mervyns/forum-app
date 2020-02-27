@@ -11,3 +11,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.body-container {
+  padding: 2rem;
+}
+
+.post-card {
+  margin: 0.5rem !important;
+  padding: 0.5rem !important;
+}
+
+.title-container {
+  padding: 2rem;
+}

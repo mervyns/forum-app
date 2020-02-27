@@ -4,7 +4,7 @@ import { Layout } from 'antd';
 import Header from './components/Header';
 import AuthWrapper from './components/AuthWrapper';
 import IndexContainer from './containers/index';
-import ProfileContainer from "./containers/profile";
+import ProfileContainer from './containers/profile';
 import { useAuth0 } from './utils/auth';
 import './App.css';
 
@@ -18,7 +18,7 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <Layout.Content style={{ padding: '0 50px' }}>
+      <Layout.Content className="body-container">
         <Switch>
           <Route exact path="/" component={IndexContainer} />
           <AuthWrapper path="/profile" component={ProfileContainer} />
