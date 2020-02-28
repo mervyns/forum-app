@@ -26,3 +26,13 @@ Resources:
           Properties:
             Path: /posts/create
             Method: any
+        ListPosts:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /posts/list
+            Method: any
+        GetPost:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /post/{postDate}/{postId}
+            Method: any

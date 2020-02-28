@@ -1,18 +1,16 @@
-'use strict';
-
 const PostsTableName = 'Posts';
 const PostsColumnName = {
-	title : 'title',
-	message : 'message',
-	userName : 'userName',
-	user : 'user',
-	postId : 'postId',
-	postDate : 'postDate',
-	comments : 'comments',
+  title: 'title',
+  message: 'message',
+  userName: 'userName',
+  user: 'user',
+  postId: 'postId',
+  postDate: 'postDate',
+  comments: 'comments',
 
 };
 const PostsTableIndexName = {
-	IdUser: 'IdUser',
+  IdUser: 'IdUser',
 };
 
 

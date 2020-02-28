@@ -5,7 +5,8 @@
 	"main": "index.js",
 	"dependencies": {
 		"dotenv": "^8.2.0",
-		"natural-orderby": "^2.0.3"
+		"natural-orderby": "^2.0.3",
+		"uuid": "^7.0.1"
 	},
 	"devDependencies": {
 		"aws-sdk": "^2.626.0",
