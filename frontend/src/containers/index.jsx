@@ -19,7 +19,7 @@ const IndexContainer = (props) => {
   const { form } = props;
   const { getFieldDecorator, validateFields } = form;
 
-  const { user } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
 
   const setTitle = (e) => {
     updatePost({ ...postState, title: e.target.value });
@@ -102,9 +102,11 @@ const IndexContainer = (props) => {
               </h1>
             </Col>
             <Col s={24} l={6}>
-              <Button type="primary" onClick={() => (toggleShowModal(true))}>
-                Create New Post
-              </Button>
+              {isAuthenticated ? (
+                <Button type="primary" onClick={() => (toggleShowModal(true))}>
+                  Create New Post
+                </Button>
+              ) : <h4>Only logged in users can post </h4>}
             </Col>
           </div>
         </Row>

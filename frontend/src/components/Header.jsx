@@ -1,8 +1,6 @@
 import React from 'react';
-import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
-
 import { useAuth0 } from '../utils/auth';
 
 const Header = () => {
@@ -13,7 +11,7 @@ const Header = () => {
     <Layout>
       <Layout.Header>
         <Menu
-          theme="dark"
+          theme="light"
           mode="horizontal"
           style={{ lineHeight: '64px' }}
         >
@@ -35,4 +33,4 @@ const Header = () => {
   );
 };
 
-export default withRouter(Header);
+export default Header;

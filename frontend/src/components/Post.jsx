@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Avatar, Card } from 'antd';
+import { Avatar, Card, Icon } from 'antd';
+
 
 const PostComponent = (props) => {
   const { post } = props;
@@ -10,8 +11,11 @@ const PostComponent = (props) => {
     message,
     postDate,
     postId,
+    comments,
   } = post;
 
+  // eslint-disable-next-line react/prop-types
+  const commentNumber = comments ? comments.length : 0;
 
   return (
     <>
@@ -26,13 +30,22 @@ const PostComponent = (props) => {
         }}
         className="post-card"
       >
-        <Avatar
-          src={post.user.picture}
-          style={{
-            marginRight: '0.5rem',
-          }}
-        />
-        {message}
+        <p>
+          <Avatar
+              src={post.user.picture}
+              style={{
+                marginRight: '0.5rem',
+              }}
+            />
+        </p>
+        <p>
+          {message}
+        </p>
+        <p>
+          {commentNumber}
+          {' '}
+          <Icon type="message" />
+        </p>
       </Card>
     </>
   );
@@ -43,7 +56,6 @@ PostComponent.propTypes = {
     title: PropTypes.string,
     message: PropTypes.string,
     postId: PropTypes.string,
-    postDate: PropTypes.number,
     user: PropTypes.shape({
       picture: PropTypes.string,
     }),
