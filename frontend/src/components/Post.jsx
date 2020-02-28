@@ -5,14 +5,19 @@ import { Avatar, Card } from 'antd';
 
 const PostComponent = (props) => {
   const { post } = props;
-  const { title, message, postId } = post;
+  const {
+    title,
+    message,
+    postDate,
+    postId,
+  } = post;
 
 
   return (
     <>
       <Card
         title={(
-          <Link to={`/${postId}`}>
+          <Link to={`/post/${postDate}/${postId}`}>
             {title}
           </Link>
         )}
@@ -38,6 +43,7 @@ PostComponent.propTypes = {
     title: PropTypes.string,
     message: PropTypes.string,
     postId: PropTypes.string,
+    postDate: PropTypes.number,
     user: PropTypes.shape({
       picture: PropTypes.string,
     }),
@@ -48,6 +54,7 @@ PostComponent.defaultProps = {
   post: {
     title: 'title',
     message: 'message',
+    postDate: '',
     postId: '',
     user: {
       picture: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',

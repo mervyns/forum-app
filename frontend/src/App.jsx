@@ -5,6 +5,7 @@ import Header from './components/Header';
 import AuthWrapper from './components/AuthWrapper';
 import IndexContainer from './containers/index';
 import ProfileContainer from './containers/profile';
+import PostContainer from './containers/post';
 import { useAuth0 } from './utils/auth';
 import './App.css';
 
@@ -21,6 +22,7 @@ function App() {
       <Layout.Content className="body-container">
         <Switch>
           <Route exact path="/" component={IndexContainer} />
+          <Route exact path="/post/:date/:id" component={PostContainer} />
           <AuthWrapper path="/profile" component={ProfileContainer} />
         </Switch>
       </Layout.Content>

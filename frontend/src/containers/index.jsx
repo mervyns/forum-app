@@ -1,21 +1,23 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import {
-  Col, Modal, Button, Row,
+  Col, Input, Form, Modal, Button, Row,
 } from 'antd';
 import axios from 'axios';
 
-import FormComponent from '../components/Form';
 import ListComponent from '../components/List';
 import FormContext from '../context/FormContext';
 import { useAuth0 } from '../utils/auth';
 
-
-const IndexContainer = () => {
+const IndexContainer = (props) => {
   const [loading, changeLoading] = useState(true);
   const [showModal, toggleShowModal] = useState(false);
   const [postsList, updatePostsList] = useState([]);
   const [postsCount, updatePostsCount] = useState();
   const [postState, updatePost] = useState({ title: '', message: '' });
+
+  const { form } = props;
+  const { getFieldDecorator, validateFields } = form;
 
   const { user } = useAuth0();
 
@@ -50,20 +52,35 @@ const IndexContainer = () => {
       });
   };
 
-  const submitPost = () => {
-    axios.post('http://127.0.0.1:3000/posts/create', {
-      ...postState,
-      user,
-    })
-      .then((response) => {
-        updatePost({ title: '', message: '' });
-        updatePostsCount(postsCount + 1);
-        toggleShowModal(false);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const handleClick = () => {
+    validateFields((err, values) => {
+      if (err) {
+        console.log(err, values);
+      } else {
+        axios.post('http://127.0.0.1:3000/posts/create', {
+          ...postState,
+          user,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        })
+          .then(() => {
+            updatePost({ title: '', message: '' });
+            updatePostsCount(postsCount + 1);
+            toggleShowModal(false);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    });
   };
+
+  const formRules = [
+    { required: true, message: 'Field is Required' },
+  ];
 
   useEffect(() => {
     getPosts();
@@ -101,13 +118,31 @@ const IndexContainer = () => {
           title="Create New Post"
           visible={showModal}
           onCancel={() => toggleShowModal(false)}
-          onOk={submitPost}
+          footer={null}
         >
-          <FormComponent />
+          <Form.Item>
+            {getFieldDecorator('title', { initialValue: '', rules: formRules })(
+              <Input
+                placeholder="Title"
+                onChange={setTitle}
+              />,
+            )}
+          </Form.Item>
+          <Form.Item>
+            {getFieldDecorator('message', { initialValue: '', rules: formRules })(
+              <Input
+                placeholder="Your thoughts please?"
+                onChange={setMessage}
+              />,
+            )}
+          </Form.Item>
+          <Button type="primary" onClick={handleClick}>
+            Submit
+          </Button>
         </Modal>
       </FormContext.Provider>
     </div>
   );
 };
 
-export default IndexContainer;
+export default Form.create()(IndexContainer);
